@@ -1,6 +1,15 @@
+" Set leader key
+let mapleader = " "
+
 " Set both relative and current line number
 :set relativenumber
 :set number
+
+" Faster switch between windows
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " No use of arrow keys
 noremap <Up> <NOP>
@@ -15,6 +24,10 @@ inoremap <Left>  <NOP>
 inoremap <Right> <NOP>
 
 nnoremap <C-P> :Files<CR>
+
+" Define mapping for inserting new line
+nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
+nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
@@ -43,8 +56,8 @@ endif
 let g:ale_fix_on_save = 1
 
 " lint after 1000ms after changes are made both on insert mode and normal mode
-let g:ale_lint_on_text_changed = 'always'
-let g:ale_lint_delay = 1000
+" let g:ale_lint_on_text_changed = 'always'
+" let g:ale_lint_delay = 1000
 
 " use nice symbols for errors and warnings
 let g:ale_sign_error = '✗\ '
