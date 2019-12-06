@@ -5,7 +5,7 @@ if [ -x $(command -v brew) ]; then
 	exit 1
 fi
 
-echo "############# Checking which components to installed #################"
+echo "############# Checking which components to install #################"
 
 if [ -x $(command -v nvim) ]; then
 	echo "############# Installing neovim #################"
@@ -31,3 +31,5 @@ if [ -x $(command -v fzf) ]; then
 	echo "############# Installing fzf #################"
 	brew install fzf
 fi
+
+
