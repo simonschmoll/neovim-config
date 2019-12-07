@@ -1,6 +1,9 @@
 " Set leader key
 let mapleader = " "
 
+" Easier buffer switching
+:nnoremap <leader>b :buffers<CR>:buffer<Space>
+
 " Set both relative and current line number
 :set relativenumber
 :set number
@@ -29,12 +32,16 @@ nnoremap <C-P> :Files<CR>
 nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 
+" Define map for You Complete me plugin
+nnoremap <leader>g :YcmCompleter GoTo<CR>
+
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 call plug#end()
