@@ -1,0 +1,12 @@
+[user]
+name = Simon Schmoll
+email = simon.schmoll@protonmail.com
+username = simonschmoll
+
+[alias]
+a = add --all
+s = status
+c = commit
+can = commit --amend --no-edit
+d = diff
+
