@@ -1,5 +1,14 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+sha256() {
+    echo "$1 $2" | sha256sum --check
+}
+
+# For awscli necessary
+export PATH=~/Library/Python/3.7/bin/:$PATH
+
+# Set editor for tmuxinator
+export EDITOR='nvim'
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/simon/.oh-my-zsh"
@@ -72,6 +81,9 @@ plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
+# Accept autocompletion with ctrl and space
+bindkey '^ ' autosuggest-accept
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -98,3 +110,8 @@ source $ZSH/oh-my-zsh.sh
 . ~/.config/aliases.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# added by travis gem
+[ -f /Users/simon/.travis/travis.sh ] && source /Users/simon/.travis/travis.sh

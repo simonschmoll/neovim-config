@@ -1,12 +1,32 @@
 " Set leader key
 let mapleader = " "
 
+" Set log level to debug
+let $NVIM_COC_LOG_LEVEL = 'debug'
+
+" Set shortcut to no highlight, useful after searching
+nnoremap <leader>l :silent! nohls<CR>
+
+" Set search with Ag shortcut
+nnoremap <C-f> :Ag<CR>
+
 " Yank into clipboard
 nnoremap <C-2> "+
 
 " Set tab to spaces
 set expandtab
-set tabstop=4
+set autoindent
+set smartindent
+set tabstop=2
+set shiftwidth=2
+
+" Custom function hoping
+" jump to the previous function
+nnoremap <silent> [f :call
+\ search('\(\(if\\|for\\|while\\|switch\\|catch\)\_s*\)\@64<!(\_[^)]*)\_[^;{}()]*\zs{', "bw")<CR>
+" jump to the next function
+nnoremap <silent> ]f :call
+\ search('\(\(if\\|for\\|while\\|switch\\|catch\)\_s*\)\@64<!(\_[^)]*)\_[^;{}()]*\zs{', "w")<CR>
 
 " Custom coc.nvim settings
 " if hidden is not set, TextEdit might fail.
@@ -187,11 +207,12 @@ nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1
 
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
 " Plug 'dense-analysis/ale'
 Plug 'benmills/vimux'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -199,12 +220,12 @@ Plug 'rakr/vim-one'
 call plug#end()
 
 " Color Schema one
-colorscheme elflord
-" set background=dark
-highlight Pmenu ctermbg=darkblue guibg=darkblue
-highlight PmenuSel ctermbg=yellow guibg=yellow
-highlight PmenuSbar ctermbg=black guibg=black
-highlight PmenuThumb ctermbg=black guibg=black
+" colorscheme elflord
+" " set background=dark
+" highlight Pmenu ctermbg=darkblue guibg=darkblue
+" highlight PmenuSel ctermbg=yellow guibg=yellow
+" highlight PmenuSbar ctermbg=black guibg=black
+" highlight PmenuThumb ctermbg=black guibg=black
 " highlight Comment guifg=gray ctermfg=gray
 
 " NERDTree ctrl+n
@@ -248,7 +269,7 @@ let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 " inoremap <expr> ycm_trigger_key pumvisible() ? "<C-j>" : ycm_trigger_key;
 
 " Shortcut for starting fuzzy finder
-nnoremap <C-p> :Files<CR>
+" nnoremap <C-p> :Files<CR>
 
 " Shortcut so I don't have to source the freakin .vim file all the time
 nnoremap <leader>vms :source ~/.config/nvim/init.vim<CR>
